@@ -22,7 +22,7 @@ If the VideoJS player is embedded in the page, this variable will return true.
 
 Then create a pageview trigger and use that Custom JavaScript variable in it. If the VideoJS player is present, this trigger will be activated. If there is no VideoJS player, that trigger will remain silent.
 
-![VideoJS is Present](https://www.analyticsmania.com/wp-content/uploads/2017/08/Pageview-Trigger-Is-Vimeo-Present.png "VideoJS is Present")
+![VideoJS is Present](https://github.com/nirjhor-ix/videojs-gtag-tracking/blob/main/Pageview-Trigger-If-VideoJS-Present.jpg?raw=true "VideoJS is Present")
 
 ## Step 2. VideoJS Auto-Event Listener
 
