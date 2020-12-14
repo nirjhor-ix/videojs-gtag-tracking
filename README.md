@@ -9,7 +9,7 @@ To do that, first, we need to create a Custom JavaScript variable and paste the 
 ```js
 function () {
  for (var e = document.getElementsByTagName("video"), x=0; x < e.length; x++) {
-    if (/^blob:https?:\/\/www.bioscopelive.com/.test(e[x].src)) {
+    if (/^https?:\/\/cdn.bioscopelive.com/.test(e[x].poster)) {
         return true;
     }
  }
