@@ -6,7 +6,7 @@ In order to track VideoJS players with GTM on a page, we will need to add a leng
 
 To do that, first, we need to create a Custom JavaScript variable and paste the following code:
 
-```bash
+```js
 function () {
  for (var e = document.getElementsByTagName("video"), x=0; x < e.length; x++) {
     if (/^blob:https?:\/\/www.bioscopelive.com/.test(e[x].src)) {
@@ -32,7 +32,7 @@ Now, it’s VideoJS Listener’s turn. A listener is a function (or a bunch of f
 Create a Custom HTML tag and paste the following code.
 
 
-```python
+```js
 <script>
 
 (function(dataLayer){
@@ -123,9 +123,9 @@ Create a Custom HTML tag and paste the following code.
 ```
 Don’t forget to assign the previously created Pageview Trigger:
 
-![VideoJS is Present](https://www.analyticsmania.com/wp-content/uploads/2017/08/Custom-HTML-Vimeo-Listener.png "VideoJS is Present")
+![VideoJS is Present](https://github.com/nirjhor-ix/videojs-gtag-tracking/blob/main/Custom-HTML-VideoJS-Listener.jpg?raw=true "VideoJS is Present")
 
-## Checkpoint!
+### Checkpoint!
 Let’s see what we’ve created so far:
 - A Pageview Trigger which checks whether VideoJS video player is embedded in the web page (thanks to a Custom JavaScript variable).
 - A VideoJS Auto-Event Listener (as a Custom HTML tag) fires only when the aforementioned Pageview Trigger activates. Every time a VideJS player interaction occurs, the listener will dispatch a Data Layer event with the following data:
@@ -136,6 +136,27 @@ Let’s see what we’ve created so far:
 
 If you want to test this now, enable the Preview and Debug mode, refresh the page with the VideoJS player and try interacting with it. You should start seeing video events in the Preview mode’s left side.
 
+## Step 3. Create Data Layer Variables and a Custom Event Trigger
+Google Tag Manager does not recognize Data Layer events or other data. So if you wish to transfer some information to other tools (e.g. Google Analytics), you need to “teach” GTM to fetch certain information (with the help of Data Layer Variables).
+
+![VideoJS is Present](https://github.com/nirjhor-ix/videojs-gtag-tracking/blob/main/eventCategory-eventAction-and-eventLabel.jpg?raw=true "VideoJS is Present")
+
+After variables are configured, it’s time to create a Custom Event Trigger. Vimeo Auto-Event Listener sends all interactions as Data Layer events under the name of “video”.
+
+```js
+ dataLayer.push({
+   event: "video",
+   eventCategory: "vimeo",
+   eventAction: "vimeo play",
+   eventLabel: video_title
+ });
+```
+
+So the next thing you should do is to create a Custom Event Trigger which listens to ALL video events. Later, it will be assigned to Google Analytics Tag.
+
+In GTM, go to Triggers > New > Custom Event and enter the following settings:
+
+![VideoJS is Present](https://github.com/nirjhor-ix/videojs-gtag-tracking/blob/main/Custom-Trigger-Video-Interaction.png?raw=true "VideoJS is Present")
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
